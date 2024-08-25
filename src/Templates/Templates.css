@@ -1,0 +1,39 @@
+.templates-container {
+    padding: 0;
+}
+
+.template-container {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.template-card {
+    width: 100%;
+    height: auto;
+}
+
+.use-template-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.template-container:hover .use-template-button {
+    opacity: 1;
+}
+
+.template-container:hover .template-card {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
