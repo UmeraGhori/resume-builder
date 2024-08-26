@@ -32,7 +32,6 @@ const Experience = ({ setCurrentStep }) => {
       [name]: value,
     };
     setForms(updatedForms);
-
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: false,
@@ -62,7 +61,7 @@ const Experience = ({ setCurrentStep }) => {
       endDate: false,
     };
 
-    forms.forEach((form, index) => {
+    forms.forEach((form) => {
       if (!form.title) {
         updatedErrors.title = true;
         isValid = false;
@@ -96,12 +95,12 @@ const Experience = ({ setCurrentStep }) => {
       container
       justifyContent="center"
       alignItems="center"
-      sx={{ minHeight: '100vh', overflow: 'hidden'}}
+      sx={{ minHeight: '100vh', overflow: 'hidden', p: 2 }}
     >
-      <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
+      <Grid item xs={12} sm={10} md={8} lg={8} xl={6}>
         <Box
           sx={{
-            padding: '32px',
+            padding: { xs: '16px', sm: '24px', md: '32px' },
             backgroundColor: '#fff',
             borderRadius: '8px',
             boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
@@ -112,8 +111,6 @@ const Experience = ({ setCurrentStep }) => {
             flexDirection: 'column',
             justifyContent: 'center',
             boxSizing: 'border-box',
-            position: 'relative',
-            top: '20px',
           }}
         >
           <Typography variant="h4" gutterBottom>
@@ -134,6 +131,7 @@ const Experience = ({ setCurrentStep }) => {
                     onChange={(e) => handleChange(e, index)}
                     error={errors.title && !form.title}
                     helperText={errors.title && !form.title ? 'Job Title is required' : ''}
+                    variant="outlined"
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -145,54 +143,73 @@ const Experience = ({ setCurrentStep }) => {
                     onChange={(e) => handleChange(e, index)}
                     error={errors.company && !form.company}
                     helperText={errors.company && !form.company ? 'Organization Name is required' : ''}
+                    variant="outlined"
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    label="Start year"
+                    label="Start Year"
                     name="startDate"
                     type="number"
                     value={form.startDate}
                     onChange={(e) => handleChange(e, index)}
                     error={errors.startDate && !form.startDate}
                     helperText={errors.startDate && !form.startDate ? 'Start year is required' : ''}
+                    variant="outlined"
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    label="End year"
+                    label="End Year"
                     name="endDate"
                     type="number"
                     value={form.endDate}
                     onChange={(e) => handleChange(e, index)}
                     error={errors.endDate && !form.endDate}
                     helperText={errors.endDate && !form.endDate ? 'End year is required' : ''}
+                    variant="outlined"
                   />
                 </Grid>
               </Grid>
               <Box sx={{ mt: 2 }}>
-                {index === experienceCount - 1 ? (
-                  <Button variant="contained" color="primary" onClick={handleAdd} disabled={experienceCount >= 3}>
-                    Add new
+                {index === experienceCount - 1 && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleAdd}
+                    disabled={experienceCount >= 3}
+                    fullWidth
+                  >
+                    Add New
                   </Button>
-                ) : null}
+                )}
               </Box>
               {forms.length > 1 && (
                 <Box sx={{ mt: 2 }}>
-                  <IconButton color="error" onClick={() => handleDelete(index)}>
+                  <IconButton color="error" onClick={() => handleDelete(index)} size="large">
                     <DeleteIcon />
                   </IconButton>
                 </Box>
               )}
             </Box>
           ))}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
-            <Button variant="contained" color="primary" onClick={() => setCurrentStep(0)}>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', mt: 4 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setCurrentStep(0)}
+              sx={{ mb: { xs: 2, sm: 0 }, flex: 1 }}
+            >
               Back
             </Button>
-            <Button variant="contained" color="primary" onClick={handleSave}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSave}
+              sx={{ flex: 1 }}
+            >
               Next
             </Button>
           </Box>

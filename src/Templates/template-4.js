@@ -7,25 +7,47 @@ const Template4 = ({ data }) => {
     const educationList = Array.isArray(education) ? education : [education];
 
     return (
-        <Paper elevation={3} sx={{ padding: 4, maxWidth: 800, margin: '0 auto' }}>
-            <Box display="flex" alignItems="center" mb={2} sx={{ backgroundColor: 'pink', padding: 2, borderRadius: 2 }}>
+        <Paper
+            elevation={3}
+            sx={{
+                padding: 2,
+                maxWidth: '100%',
+                width: '100%',
+                margin: '0 auto',
+                boxSizing: 'border-box',
+            }}
+        >
+            <Box
+                display="flex"
+                flexDirection={{ xs: 'column', sm: 'row' }}
+                alignItems="center"
+                mb={2}
+                sx={{ backgroundColor: 'pink', padding: 2, borderRadius: 2 }}
+            >
                 <Avatar
                     src={personal.profileImage}
                     alt={`${personal.firstName} ${personal.lastName}`}
-                    sx={{ width: 80, height: 80, mr: 2 }}
+                    sx={{
+                        width: { xs: 60, sm: 80 },
+                        height: { xs: 60, sm: 80 },
+                        mb: { xs: 2, sm: 0 },
+                        mr: { sm: 2 }
+                    }}
                 />
-                <Box>
-                    <Typography variant="h4" fontWeight="bold" color="white">
+                <Box textAlign={{ xs: 'center', sm: 'left' }}>
+                    <Typography variant="h5" fontWeight="bold" color="white">
                         {personal.firstName.toUpperCase()} {personal.lastName.toUpperCase()}
                     </Typography>
                 </Box>
             </Box>
+
             <Box mb={4} sx={{ backgroundColor: '#f5f5f5', padding: 2, borderRadius: 2 }}>
                 <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
                     Professional Summary
                 </Typography>
                 <Typography>{personal.objectives}</Typography>
             </Box>
+
             <Box mb={4}>
                 <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
                     Work Experience
@@ -41,6 +63,7 @@ const Template4 = ({ data }) => {
                     </Box>
                 ))}
             </Box>
+
             <Box mb={4}>
                 <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
                     Education
@@ -57,6 +80,7 @@ const Template4 = ({ data }) => {
                     </Box>
                 ))}
             </Box>
+
             <Box mb={4}>
                 <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
                     Skills
@@ -69,22 +93,30 @@ const Template4 = ({ data }) => {
                     ))}
                 </List>
             </Box>
+
             <Box mb={4}>
                 <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
                     Contact
                 </Typography>
                 <Divider sx={{ mb: 2, bgcolor: 'pink' }} />
-                <Box display="flex" alignItems="center">
-                    <Phone sx={{ mr: 1 }} />
-                    <Typography>{personal.mobile}</Typography>
-                </Box>
-                <Box display="flex" alignItems="center">
-                    <Email sx={{ mr: 1 }} />
-                    <Typography>{personal.email}</Typography>
-                </Box>
-                <Box display="flex" alignItems="center">
-                    <LocationOn sx={{ mr: 1 }} />
-                    <Typography>{personal.address}</Typography>
+                <Box
+                    display="flex"
+                    flexDirection={{ xs: 'column', sm: 'row' }}
+                    alignItems="center"
+                    gap={2}
+                >
+                    <Box display="flex" alignItems="center" mb={1} sx={{ width: '100%' }}>
+                        <Phone sx={{ mr: 1 }} />
+                        <Typography>{personal.mobile}</Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center" mb={1} sx={{ width: '100%' }}>
+                        <Email sx={{ mr: 1 }} />
+                        <Typography>{personal.email}</Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center" sx={{ width: '100%' }}>
+                        <LocationOn sx={{ mr: 1 }} />
+                        <Typography>{personal.address}</Typography>
+                    </Box>
                 </Box>
             </Box>
         </Paper>

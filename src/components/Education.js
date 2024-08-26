@@ -6,7 +6,6 @@ import { setEducation } from '../redux/resumeSlice';
 const Education = ({ setCurrentStep }) => {
   const dispatch = useDispatch();
   const education = useSelector((state) => state.resume.education);
-
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -39,26 +38,26 @@ const Education = ({ setCurrentStep }) => {
       container
       justifyContent="center"
       alignItems="center"
-      sx={{ minHeight: '100vh', overflow: 'hidden' }}
+      sx={{ minHeight: '100vh', overflow: 'hidden', p: 2 }}
     >
-      <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
+      <Grid item xs={12} sm={10} md={8} lg={7} xl={6}>
         <Box
           sx={{
-            padding: '32px',
+            padding: { xs: '20px', sm: '28px', md: '36px' }, // Increase padding
             backgroundColor: '#fff',
-            borderRadius: '8px',
-            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+            borderRadius: '12px', // Increase border-radius for a softer look
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', // Slightly stronger shadow for better depth
             border: '1px solid #e0e0e0',
             maxWidth: '100%',
             margin: 'auto',
-            height: 'auto',
+            height: { xs: 'auto', md: '80vh' }, // Increase height for larger screens
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             boxSizing: 'border-box',
           }}
         >
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Education Details
           </Typography>
           <TextField
@@ -100,7 +99,7 @@ const Education = ({ setCurrentStep }) => {
             helperText={errors.degree}
           />
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="Start Year"
@@ -113,7 +112,7 @@ const Education = ({ setCurrentStep }) => {
                 helperText={errors.startYear}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="End Year"
@@ -127,7 +126,7 @@ const Education = ({ setCurrentStep }) => {
               />
             </Grid>
           </Grid>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 4 }}>
             <Button variant="contained" color="primary" onClick={handleBack}>
               Back
             </Button>

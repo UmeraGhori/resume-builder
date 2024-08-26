@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Stepper, Step, StepLabel, Button } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Personal from '../components/Personal';
-import Experience from '../components/Experience';
-import Education from '../components/Education';
-import Skills from '../components/Skills';
-import Header from '../components/Header';
+import { Box, Stepper, Step, StepLabel, Button, Container } from '@mui/material'; // Import Material-UI components
+import { useLocation, useNavigate } from 'react-router-dom'; // Import hooks for routing
+import Personal from '../components/Personal'; // Import Personal component
+import Experience from '../components/Experience'; // Import Experience component
+import Education from '../components/Education'; // Import Education component
+import Skills from '../components/Skills'; // Import Skills component
+import Header from '../components/Header'; // Import Header component
 
+// Define the steps for the multi-step form
 const steps = ['Personal Information', 'Work Experience', 'Education', 'Skills'];
 
 const DetailsPage = () => {
@@ -32,7 +33,6 @@ const DetailsPage = () => {
     education: { type: '', university: '', degree: '', startYear: '', endYear: '' },
     skills: []
   });
-
   const [showPreviewButton, setShowPreviewButton] = useState(false);
 
   const handlePreview = () => {
@@ -48,65 +48,71 @@ const DetailsPage = () => {
 
   return (
     <>
-      <Header />
-      <Box sx={{ width: '100%', padding: '20px' }}>
-        <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+      <Header /> {/* Render the Header component */}
+      <Container maxWidth="md" sx={{ padding: '16px' }}>
+        <Box sx={{ width: '100%' }}>
+          {/* Stepper component to display progress through steps */}
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
 
-        {activeStep === 0 && (
-          <Personal 
-            profileImage={profileImage} 
-            setProfileImage={setProfileImage}
-            setCurrentStep={setActiveStep}
-          />
-        )}
+          {/* Conditional rendering of components based on the active step */}
+          <Box sx={{ mt: 4 }}>
+            {activeStep === 0 && (
+              <Personal 
+                profileImage={profileImage} 
+                setProfileImage={setProfileImage}
+                setCurrentStep={setActiveStep}
+              />
+            )}
 
-        {activeStep === 1 && (
-          <Experience 
-            workExperiences={workExperiences}
-            setWorkExperiences={setWorkExperiences}
-            addWorkExperience={() => setWorkExperiences([...workExperiences, { title: '', company: '', startDate: '', endDate: '' }])}
-            deleteWorkExperience={(index) => setWorkExperiences(workExperiences.filter((_, i) => i !== index))}
-            setCurrentStep={setActiveStep}
-          />
-        )}
+            {activeStep === 1 && (
+              <Experience 
+                workExperiences={workExperiences}
+                setWorkExperiences={setWorkExperiences}
+                addWorkExperience={() => setWorkExperiences([...workExperiences, { title: '', company: '', startDate: '', endDate: '' }])}
+                deleteWorkExperience={(index) => setWorkExperiences(workExperiences.filter((_, i) => i !== index))}
+                setCurrentStep={setActiveStep}
+              />
+            )}
 
-        {activeStep === 2 && (
-          <Education 
-            educationDetails={educationDetails}
-            setEducationDetails={setEducationDetails}
-            errors={errors}
-            setErrors={setErrors}
-            setCurrentStep={setActiveStep}
-          />
-        )}
+            {activeStep === 2 && (
+              <Education 
+                educationDetails={educationDetails}
+                setEducationDetails={setEducationDetails}
+                errors={errors}
+                setErrors={setErrors}
+                setCurrentStep={setActiveStep}
+              />
+            )}
 
-        {activeStep === 3 && (
-          <Skills 
-            skills={skills}
-            setSkills={setSkills}
-            setCurrentStep={setActiveStep}
-            showPreviewButton={showPreviewButton}
-            setShowPreviewButton={setShowPreviewButton}
-          />
-        )}
+            {activeStep === 3 && (
+              <Skills 
+                skills={skills}
+                setSkills={setSkills}
+                setCurrentStep={setActiveStep}
+                showPreviewButton={showPreviewButton}
+                setShowPreviewButton={setShowPreviewButton}
+              />
+            )}
 
-        {showPreviewButton && (
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Button variant="contained" onClick={handlePreview}>
-              Preview
-            </Button>
+            {/* Conditionally render the preview button if showPreviewButton is true */}
+            {showPreviewButton && (
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                <Button variant="contained" onClick={handlePreview} sx={{ width: '100%', maxWidth: '200px' }}>
+                  Preview
+                </Button>
+              </Box>
+            )}
           </Box>
-        )}
-      </Box>
+        </Box>
+      </Container>
     </>
   );
 };
 
-
-export default DetailsPage;
+export default DetailsPage; // Export the DetailsPage component
