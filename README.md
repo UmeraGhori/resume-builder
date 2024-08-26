@@ -1,6 +1,6 @@
 # Resume Builder Application
 
-![Resume Builder Screenshot](images/homeSS.png)
+![Resume Builder Screenshot](src/images/homeSS.png)
 
 
 ## Overview
