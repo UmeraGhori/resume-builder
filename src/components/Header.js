@@ -95,7 +95,7 @@ const Header = () => {
         {/* Container for buttons */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
           {/* Button for resume templates */}
-          <HeaderButton>Resume Templates</HeaderButton>
+          <HeaderButton onClick={handleLogo}>Resume Templates</HeaderButton>
           {/* Button for my resumes */}
           <HeaderButton>My Resumes</HeaderButton>
           {/* Bold button for about us, with a click handler to navigate to the about page */}

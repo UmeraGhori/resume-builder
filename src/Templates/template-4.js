@@ -81,19 +81,21 @@ const Template4 = ({ data }) => {
                 ))}
             </Box>
 
+            {/* Skills */}
             <Box mb={4}>
-                <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
+                <Typography variant="h6" fontWeight="bold" color="#001F3F" gutterBottom>
                     Skills
                 </Typography>
-                <List>
+                <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {skills.map((skill, index) => (
                         <ListItem key={index} sx={{ padding: 0 }}>
-                            <ListItemText primary={skill} />
+                            <ListItemText primary={skill} sx={{ textAlign: 'center' }} />
                         </ListItem>
                     ))}
                 </List>
             </Box>
-
+            
+            {/* Contact */}
             <Box mb={4}>
                 <Typography variant="h6" fontWeight="bold" color="pink" gutterBottom>
                     Contact
